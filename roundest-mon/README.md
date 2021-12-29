@@ -19,6 +19,16 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+
+Run database
+```
+pscale connect roundest-mon rei-dev --port 3309
+
+scale connect roundest-mon rei-shadow --port 3310
+```
+
+`npx prisma migrate dev`
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
