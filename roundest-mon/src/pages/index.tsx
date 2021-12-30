@@ -30,7 +30,7 @@ const Home: NextPage = () => {
 
   console.log(firstPokemon.data);
   return (
-    <div className='h-screen w-screen flex flex-col justify-center items-center'>
+    <div className='h-screen w-screen flex flex-col justify-center items-center relative'>
       <div className='text-2xl text-center'>Which Pokemon is Rounder?</div>
       <div className='p-2'/>
       <div className='border rounded p-8 flex justify-between items-center max-w-2xl'>
@@ -44,6 +44,9 @@ const Home: NextPage = () => {
           )
         }
         <div className='p-2'/>
+      </div>
+      <div className='absolute bottom-0 w-full text-xl text-center pb-2'>
+        <a href='https://github.com/reireynoso/js-mini-projects/tree/main/roundest-mon'>Github</a>
       </div>
     </div>
   ) 
