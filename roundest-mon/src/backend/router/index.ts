@@ -19,7 +19,8 @@ export const appRouter = trpc.router().query("get-pokemon-by-id", {
     async resolve({input}){
         const voteInDB = await prisma.vote.create({
             data: {
-                ...input
+                votedAgainstId: input.votedAgainst,
+                votedForId: input.votedFor
             }
         })
         return {success: true, vote: voteInDB};
