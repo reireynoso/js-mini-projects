@@ -53,7 +53,12 @@ type PokemonFromServer = inferQueryResponse<"get-pokemon-by-id">;
 
 const PokemonListing:React.FC<{pokemon: PokemonFromServer, vote: () => void}> = (props) => {
   return (<div className='flex flex-col items-center'>
-    <img src={props.pokemon.sprites.front_default || ""} className='w-64 h-64'/>
+    <Image src={props.pokemon.sprites.front_default || ""} 
+      height={256} 
+      width={256}
+      className='w-64 h-64'
+      layout='fixed'
+      />
     <div className='text-xl text-center capitalize mt-[-2rem]'>{props.pokemon.name}</div>
     <button className={buttonClasses} onClick={() => props.vote()}>Rounder</button>
   </div>)
