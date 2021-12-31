@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import { getOptionsForVote } from '../utils/getRandomPokemon'
 import { trpc } from '../utils/trpc';
@@ -47,6 +47,10 @@ const Home: NextPage = () => {
       </div>
       <div className='absolute bottom-0 w-full text-xl text-center pb-2'>
         <a href='https://github.com/reireynoso/js-mini-projects/tree/main/roundest-mon'>Github</a>
+        {" | "}
+        <Link href={"/results"}>
+          <a>Results</a>
+        </Link>
       </div>
     </div>
   ) 
