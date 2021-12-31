@@ -30,7 +30,7 @@ function PostItems() {
                 {
                     posts.map(post => (
                         <li key={post.id}>
-                            <Link to={`post.id`}>
+                            <Link to={`/posts/${post.id}`}>
                                 <h3>{post.title}</h3>
                                 {
                                     new Date(post.createdAt).toLocaleString()
