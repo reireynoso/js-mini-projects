@@ -29,19 +29,28 @@ const Home: NextPage = () => {
   } 
 
   console.log(firstPokemon.data);
+
+  const dataLoaded = !firstPokemon.isLoading &&
+  firstPokemon.data &&
+  !secondPokemon.isLoading &&
+  secondPokemon.data;
+
   return (
     <div className='h-screen w-screen flex flex-col justify-center items-center relative'>
       <div className='text-2xl text-center'>Which Pokemon is Rounder?</div>
       <div className='p-2'/>
       <div className='border rounded p-8 flex justify-between items-center max-w-2xl'>
         {
-          !firstPokemon.isLoading && !secondPokemon.isLoading && firstPokemon.data && secondPokemon.data && (
+          dataLoaded && !secondPokemon.isLoading && firstPokemon.data && secondPokemon.data && (
             <>
               <PokemonListing pokemon={firstPokemon.data} vote={() => voteForRoundest(first)}/>
               <div className='p-8'>Vs</div>
               <PokemonListing pokemon={secondPokemon.data} vote={() => voteForRoundest(second)}/>
             </>
           )
+        }
+        {
+          !dataLoaded && <p>Loading...</p>
         }
         <div className='p-2'/>
       </div>
