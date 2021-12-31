@@ -18,3 +18,7 @@ else{
 
     db = global.__db;
 }
+
+export {
+    db
+}

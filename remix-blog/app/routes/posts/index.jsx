@@ -1,24 +1,18 @@
 import {Link, useLoaderData} from 'remix';
+import {db} from '~/utils/db.server';
 
-export const loader = () => {
+export const loader = async() => {
+    console.log(db)
     const data = {
-        posts: [
-            {
-                id: 1,
-                title: 'Post 1',
-                body: "This is a test post 1"
+        posts: await db.post.findMany({
+            take: 20,
+            select: {
+                id: true,
+                title: true,
+                createdAt: true
             },
-            {
-                id: 2,
-                title: 'Post 2',
-                body: "This is a test post 2"
-            },
-            {
-                id: 2,
-                title: 'Post 2',
-                body: "This is a test post 2"
-            }
-        ]
+            orderBy: {createdAt: 'desc'}
+        })
     }
     return data;
 }
@@ -38,6 +32,9 @@ function PostItems() {
                         <li key={post.id}>
                             <Link to={`post.id`}>
                                 <h3>{post.title}</h3>
+                                {
+                                    new Date(post.createdAt).toLocaleString()
+                                }
                             </Link>
                         </li>
                     ))

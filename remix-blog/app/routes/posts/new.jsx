@@ -11,7 +11,7 @@ export const action = async({request}) => {
     }
 
     // console.log(form)
-    // return redirect("/posts");
+    return redirect("/posts");
 }
 
 function NewPost() {
