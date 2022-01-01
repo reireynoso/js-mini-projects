@@ -1,5 +1,6 @@
 import {useActionData, json, redirect} from 'remix';
 import {db} from '~/utils/db.server';
+import {login} from '~/utils/session.server';
 
 function badRequest(data){
     return json(data, { status: 400 });
@@ -38,6 +39,29 @@ export const action = async ({request}) => {
     if(Object.values(fieldErrors).some(Boolean)){
         console.log(fieldErrors);
         return badRequest({fieldErrors, fields})
+    }
+
+    switch(loginType){
+        case 'login': {
+            // Find user, check user, create user session
+            const user = await login({username, password});
+            // Check user
+            if(!user){
+                return badRequest({
+                    fields,
+                    fieldErrors: {username: 'Invalid Credentials'}
+                })
+            }
+        }
+        case 'register': {
+            // Check if user exists, create user, create user session
+        }
+        default: {
+            return badRequest({
+                fields,
+                formError: 'Login type is not valid'
+            })
+        }
     }
 }
 
