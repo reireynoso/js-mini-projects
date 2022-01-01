@@ -58,3 +58,4 @@ Initialization:
 - `npm install prisma @prisma/client` 
 - `npx prisma init --datasource-provider sqlite`
 - `npx prisma db push` (add schema)
+- `npx prisma studio` (view data)
