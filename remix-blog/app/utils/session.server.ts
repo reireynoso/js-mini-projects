@@ -21,6 +21,18 @@ export async function login({username, password}){
     return user;
 }
 
+// Register new user
+
+export async function register({username, password}){
+    const passwordHash = await bcrypt.hash(password, 10);
+    return db.user.create({
+        data: {
+            username,
+            passwordHash
+        }
+    })
+}
+
 // Get session secret
 const sessionSecret = process.env.SESSION_SECRET;
 if(!sessionSecret){
@@ -88,3 +100,4 @@ export async function logout(request: Request){
         }
     })
 }
+
